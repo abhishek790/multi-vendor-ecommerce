@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('shops', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(User::class);
+            $table->string('shop_name');
+            $table->string('PAN');
+            $table->string('Contact_number');
+            $table->text('address');
+            $table->string('email');
+            $table->string('shop_type');
+            $table->string('profile_picture');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('shops');
+    }
+};
