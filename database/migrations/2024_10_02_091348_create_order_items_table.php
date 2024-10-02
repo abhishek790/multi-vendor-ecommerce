@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use App\Models\Products;
+use App\Models\Orders;
 
 return new class extends Migration {
     /**
@@ -10,10 +13,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->text('message');
-            $table->enum('recipient_role', ['retailer', 'staff']);
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Products::class);
+            $table->foreignIdFor(Orders::class);
+            $table->unsignedInteger('quantity');
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('order_items');
     }
 };

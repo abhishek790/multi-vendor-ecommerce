@@ -7,25 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Orders extends Model
 {
     use HasFactory;
-
-    public function delivery(): HasOne
-    {
-        return $this->hasOne(Orders::class);
-    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function ledgers(): HasMany
+    public function orderItems(): HasMany
     {
-        return $this->hasMany(Orders::class);
+        return $this->hasMany(OrderItems::class);
     }
 
     public function products(): BelongsToMany

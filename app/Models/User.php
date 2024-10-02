@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -48,14 +49,14 @@ class User extends Authenticatable
         ];
     }
 
-    public function shops(): HasOne
+    public function shop(): HasOne
     {
         return $this->hasOne(Shops::class);
     }
 
-    public function payments(): HasOne
+    public function products(): HasMany
     {
-        return $this->hasOne(Payments::class);
+        return $this->hasMany(Products::class);
     }
 
     public function orders(): HasMany
@@ -63,18 +64,10 @@ class User extends Authenticatable
         return $this->hasMany(Orders::class);
     }
 
-    public function carts(): HasMany
+    public function orderItems(): HasMany
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasMany(OrderItems::class);
     }
 
-    public function feedbacks(): HasMany
-    {
-        return $this->hasMany(Feedback::class);
-    }
 
-    public function notifications(): BelongsToMany
-    {
-        return $this->belongsToMany(Notification::class);
-    }
 }

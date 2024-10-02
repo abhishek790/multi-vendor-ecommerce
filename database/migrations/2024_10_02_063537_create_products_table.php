@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Categories;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,12 +16,10 @@ return new class extends Migration {
             $table->id();
             $table->string('product_name');
             $table->decimal('price', 10, 2);
-            $table->text('description');
-            $table->string('category');
+            $table->foreignIdFor(Categories::class);
             $table->unsignedInteger('stock_quantity');
             $table->string('image_url');
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

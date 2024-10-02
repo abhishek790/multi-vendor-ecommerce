@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Payments extends Model
+class OrderItems extends Model
 {
     use HasFactory;
 
@@ -14,4 +14,16 @@ class Payments extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function orders(): BelongsTo
+    {
+        return $this->belongsTo(Orders::class);
+    }
+
+    public function products(): BelongsTo
+    {
+        return $this->belongsTo(Products::class);
+    }
+
+
 }
