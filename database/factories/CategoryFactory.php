@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderItems>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
  */
-class OrderItemsFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class OrderItemsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'category_name' => fake()->randomElement(['Clothing', 'Electronics', 'Musical Instrument', 'Stationery'])
         ];
     }
 }

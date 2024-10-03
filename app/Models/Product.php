@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Orders extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -17,13 +17,20 @@ class Orders extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function orderItems(): HasMany
+    public function categories(): BelongsTo
     {
-        return $this->hasMany(OrderItems::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function products(): BelongsToMany
+    public function orderItems(): HasMany
     {
-        return $this->belongsToMany(Products::class);
+        return $this->hasMany(OrderItem::class);
     }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
+
 }

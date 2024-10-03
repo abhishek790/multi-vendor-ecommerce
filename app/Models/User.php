@@ -51,22 +51,22 @@ class User extends Authenticatable
 
     public function shop(): HasOne
     {
-        return $this->hasOne(Shops::class);
+        return $this->hasOne(Shop::class);
     }
 
     public function products(): HasMany
     {
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Product::class);
     }
 
     public function orders(): HasMany
     {
-        return $this->hasMany(Orders::class);
+        return $this->hasMany(Order::class);
     }
 
     public function orderItems(): HasMany
     {
-        return $this->hasMany(OrderItems::class);
+        return $this->hasMany(OrderItem::class);
     }
 
 

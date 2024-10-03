@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Orders>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderItem>
  */
-class OrdersFactory extends Factory
+class OrderItemFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class OrdersFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'quantity' => fake()->numberBetween(1, 10),
         ];
     }
 }
