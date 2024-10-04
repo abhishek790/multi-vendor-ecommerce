@@ -16,10 +16,16 @@ class OrderItemSeeder extends Seeder
      */
     public function run(): void
     {
-        OrderItem::factory()->count(100)->create([
-            'user_id' => User::inRandomOrder()->first()->id,
-            'product_id' => Product::inRandomOrder()->first()->id,
-            'order_id' => Order::inRandomOrder()->first()->id
-        ]);
+
+
+        // we need to put the array inside function and return it in order to get unique value for each order
+        // if you use the array only inside create() it will run once and for all other iteration it will use that same value
+        OrderItem::factory()->count(100)->create(function () {
+            return [
+                'user_id' => User::inRandomOrder()->where('role', 'buyer')->first()->id,
+                'product_id' => Product::inRandomOrder()->first()->id,
+                'order_id' => Order::inRandomOrder()->first()->id
+            ];
+        });
     }
 }
