@@ -16,10 +16,21 @@ class OrderSeeder extends Seeder
 
     public function run(): void
     {
-        $users = User::all();
-        Order::factory()->count(50)->create([
-            'user_id' => User::inRandomOrder()->first()->id
+        $users = User::where('role', 'buyer')->get();
 
-        ]);
+
+        foreach ($users as $user) {
+            $numOfIterations = random_int(1, 3);
+
+            for ($i = 0; $i < $numOfIterations; $i++) {
+
+                Order::factory()->create([
+                    'user_id' => $user->id
+
+                ]);
+            }
+        }
+
+
     }
 }
