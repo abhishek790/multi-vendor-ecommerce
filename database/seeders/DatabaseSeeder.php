@@ -17,9 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        $categories = ['Clothing', 'Electronics', 'Musical Instrument', 'Furniture'];
+
+        foreach ($categories as $category) {
+            Category::create([
+                'category_name' => $category,
+            ]);
+        }
 
         User::factory(30)->create();
-        Category::factory(4)->create();
+
         $this->call(ShopSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(Order::class);

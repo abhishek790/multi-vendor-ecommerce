@@ -12,10 +12,14 @@ class OrderSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
+
     public function run(): void
     {
+        $users = User::all();
         Order::factory()->count(50)->create([
             'user_id' => User::inRandomOrder()->first()->id
+
         ]);
     }
 }

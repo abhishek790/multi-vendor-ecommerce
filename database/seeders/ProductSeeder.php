@@ -18,10 +18,19 @@ class ProductSeeder extends Seeder
         $categories = Category::all();
         $sellers = User::where('role', 'seller')->get();
 
-        Product::factory()->count(50)->create([
-            'user_id' => $sellers->random()->id,
-            'category_id' => $categories->random()->id
-        ]);
+        foreach ($sellers as $seller) {
+            $category_post = $categories->random(rand(1, 4));
+
+            foreach ($category_post as $category) {
+                Product::factory()->create([
+                    'user_id' => $seller->id,
+                    'category_id' => $category->id
+                ]);
+
+            }
+        }
+
+
 
     }
 }
